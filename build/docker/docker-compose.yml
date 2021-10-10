@@ -1,0 +1,49 @@
+version: '3.5'
+services: 
+  broadcaster:
+    build:
+      context: ../..
+      dockerfile: build/docker/Dockerfile
+    image: caik/go-stream-broadcaster:latest
+    container_name: broadcaster
+    networks: 
+      - go-stream-broadcast
+    ports: 
+      - 7000:7000
+    command: 
+      - /app/broadcaster
+    environment: 
+      - BROADCASTER_HTTP_PORT=7000
+      - BROADCASTER_BUFFER_SIZE=${BROADCASTER_BUFFER_SIZE}
+      - 'BROADCASTER_HOST_LIST=reader-1:7001;reader-2:7002'
+
+  reader-1:
+    build: 
+      context: ../..
+      dockerfile: build/docker/Dockerfile
+    image: caik/go-stream-broadcaster:latest
+    container_name: reader-1
+    networks: 
+      - go-stream-broadcast
+    ports: 
+      - 7001:7001
+    environment: 
+      - READER_HTTP_PORT=7001
+      - READER_BUFFER_SIZE=${READER_1_BUFFER_SIZE}
+
+  reader-2:
+    build:
+      context: ../..
+      dockerfile: build/docker/Dockerfile
+    image: caik/go-stream-broadcaster:latest
+    container_name: reader-2
+    networks: 
+      - go-stream-broadcast
+    ports: 
+      - 7002:7002
+    environment: 
+      - READER_HTTP_PORT=7002
+      - READER_BUFFER_SIZE=${READER_2_BUFFER_SIZE}
+
+networks: 
+  go-stream-broadcast: null
