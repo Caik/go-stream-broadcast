@@ -94,11 +94,25 @@ CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -a -ldflags '-extldflags "-stati
 CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -a -ldflags '-extldflags "-static" -s -w' -o ./reader-darwin-amd64 cmd/reader/main.go
 ```
 
-
 ##
 ---
 
 ## Usage
+
+After configuring and starting the **Broadcaster** and also some **Readers**, you can try to upload a file:
+
+ ```bash
+# uploading a file using curl
+curl -F file=@video_of_4GB.mp4 http://localhost:7000/broadcast
+```
+
+You can also use any other tool for uploading the file. The only requirement is that the request must be a multipart one.
+
+
+##
+---
+
+## Configuration
 
 There are some environment variables that can be used to configure both services:
 
