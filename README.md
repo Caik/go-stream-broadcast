@@ -7,7 +7,7 @@
 
 Go Stream Broadcast is a POC (Proof Of Concept) built in Go that explore the concept of streams on a file upload environment. 
 
-The goal is to create a performatic and memory-efficient file upload service, that can upload a file of any size to multiples targets (e.g. a s3 bucket and YouTube API) 
+The goal is to create a performatic and memory-efficient file upload service, that can upload a file of any size to multiples targets (e.g. a s3 bucket and YouTube API).
 
 
 ##
@@ -35,11 +35,8 @@ There are two components:
  - **Broadcaster**
  - **Reader**
 
-### Broadcaster
-
 **Broadcaster** is the service responsible for managing the file upload to multiple targets.
 
-### Reader
 
 **Reader** is the service responsible for receiving the file and doing something with it. Its simulate a service like a S3 upload API, YouTube upload API, etc...
 
@@ -49,7 +46,9 @@ There are two components:
 
 ## Running
 
-There is a configured docker-compose environment composed by one instance of **Broadcaster** and two instances of **Reader**. **Docker**, **docker-compose** and **make** will be needed to run:
+There is a configured docker-compose environment composed by one instance of **Broadcaster** and two instances of **Reader**. 
+
+**Docker**, **docker-compose** and **make** will be needed to run:
 
 ```bash
 # running docker environment
@@ -66,6 +65,9 @@ PS: You may need to give execution permission to the binary after downloading it
 # giving execution permission on linux
 chmod +x ./broadcaster ./reader
 ```
+
+
+### Running the binaries
 
  ```bash
 # on a terminal
